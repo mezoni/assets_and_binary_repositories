@@ -1,0 +1,14 @@
+name: assets_and_binary_repositories
+version: 0.0.1
+author: Andrew Mezoni <andrew.mezoni@gmail.com>
+description: Example of usage of assets from the binary repository with zip archive.
+homepage: https://github.com/mezoni/assets_and_binary_repositories
+dependencies:
+  archive: any
+  barback: any
+  binary_repositories: any
+  path: any
+transformers:
+- assets_and_binary_repositories: {}
+- $dart2js:
+    $exclude: '**'

@@ -1,24 +1,3 @@
-# example_of_usage_of_assets
-
-Example of usage of assets from the binary repository with zip archive.
-
-**main.dart**
-
-```dart
-import "dart:io";
-import "package:assets_and_binary_repositories/assets.dart";
-
-main() async {
-  var assets = await Assets.install();
-  print("Assets: $assets");
-  for (var file in new Directory(assets).listSync(recursive: true)) {
-    print(file.path);
-  }
-}
-```
-
-**lib/assets.dart**
-```dart
 library example_of_usage_of_assets.assets;
 
 import "dart:async";
@@ -91,44 +70,3 @@ class Assets {
     }
   }
 }
-
-```
-
-**Update procedure**
-
-An update procedures should be placed in the `barback` transformer.  
-If the newer version available it would be installed.  
- 
- ```dart
-import "package:barback/barback.dart";
-import "package:assets_and_binary_repositories/assets.dart";
-import "package:path/path.dart" as lib_path;
-
-class AssetsUpdater extends Transformer {
-  static const String EXT = ".inf";
-
-  static const String PACKAGE = "assets_and_binary_repositories";
-
-  final BarbackSettings _settings;
-
-  AssetsUpdater.asPlugin(this._settings);
-
-  String get allowedExtensions => EXT;
-
-  Object apply(Transform transform) async {
-    var id = transform.primaryInput.id;
-    if (id.package != PACKAGE) {
-      return null;
-    }
-
-    var filepath = id.path;
-    if (lib_path.basename(filepath) != "$PACKAGE$EXT") {
-      return null;
-    }
-
-    await Assets.update();
-    return null;
-  }
-}
-
-```
