@@ -1,4 +1,4 @@
-# example_of_usage_of_assets
+# assets_and_binary_repositories
 
 Example of usage of assets from the binary repository with zip archive.
 
@@ -31,7 +31,7 @@ import "package:path/path.dart" as lib_path;
 class Assets {
   static final String constraint = "<=1.0.0";
   static final String filepath = "assets.zip";
-  static final String package = "example_of_usage_of_assets.assets";
+  static final String package = "assets_and_binary_repositories.assets";
 
   static Future<String> install() async {
     var pub = new PubBinaryRepository();
